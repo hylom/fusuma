@@ -1,0 +1,380 @@
+/**************************************
+ holym.css - holymachine main css
+ 2008-06-05 * hylom 
+**************************************/
+
+/*************** 基本属性 ***************/
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+img { 
+  border: none;
+}
+
+/*************** トップバナー ***************/
+#top-banner {
+  background-color: #fafaf0;
+  background-image: url("/theme/img/top_left.png"); /* 22x88 */
+  background-repeat: no-repeat;
+  background-position: left;
+  height: 88px;
+  padding: 0px 0px 0px 22px;
+  margin: 10px 0px 0px 10px;
+}
+
+#top-banner-inner {
+  height: 86px;
+  margin: 0px;
+  border-top: 1px solid #a0a09f;
+  border-bottom: 1px solid #a0a09f;
+}
+
+#top-banner-inner img {
+  border: none;
+}
+
+#img-top-banner {
+  margin: 16px 0px 0px 8px;
+}
+
+/*************** 右サイドバー ***************/
+
+#right-sidebar {
+  margin:  -94px 5px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  float: right;
+  width: 220px;
+}
+
+#right-sidebar h2 {
+  display: none;
+}
+
+#right-sidebar-header {
+  height: 15px;
+  background-image: url("/theme/img/side_top.png"); /* 220x15 */
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+#right-sidebar-calendar {
+  margin:  0px 0px 10px 0px;
+  padding: 0px;
+}
+
+.right-sidebar-calendar-img {
+  border-left: 1px solid #999a9a;
+  border-right: 1px solid #999a9a;
+  padding: 0px 8px 5px 8px;
+}
+
+.right-sidebar-box {
+  background-image: url("/theme/img/sidebox_top.png"); /* 220x10 */
+  background-repeat: no-repeat;
+  background-position: top;
+  margin:  0px 0px 10px 0px;
+  padding: 10px 0px 0px 0px;
+}
+
+.right-sidebar-contents {
+  background-color: #bafcc4;
+  background-image: url("/theme/img/sidebox_bottom.png"); /* 220x10 */
+  background-repeat: no-repeat;
+  background-position: bottom;
+  margin:  0px 0px 0px 0px;
+  padding: 0px 0px 10px 0px;
+}
+
+.right-sidebar-contents .text {
+  font-size: 80%;
+  border-left: 1px solid #999a9a;
+  border-right: 1px solid #999a9a;
+  margin:  0px;
+  padding: 0px 10px;
+}
+
+.right-sidebar-contents .text p {
+  margin: 0px;
+  padding: 0px;
+}
+ 
+.right-sidebar-contents .text h3 {
+  width: 200px;
+  margin: 0px 0px 8px 0px;
+  padding: 0px;
+  border-bottom: 1px solid #999a9a;
+}
+
+.right-sidebar-contents .text ul {
+  width: 200px;
+  font-size:80%;
+  margin: 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+.right-sidebar-contents .text ul li {
+  list-style-type: none;
+}
+
+#right-sidebar-header .right-sidebar-header-text {
+  display: none;
+}
+
+#right-sidebar-top-img img{
+/* 画像サイズ：200x150 */
+  border: 1px solid;
+}
+
+/** カレンダー **/
+.blosxomCalendar {
+  margin: 0px auto;
+  text-align: center;
+  width: 200px;
+}
+
+
+.solid-box {
+  font-size:80%;
+  border: 1px solid #999a9a;
+  margin-bottom: 10px;
+  padding: 0px;
+}
+
+.solid-box h3 {
+  width: 200px;
+  padding: 0px;
+  margin: 0px 9px 8px 9px;
+  border-bottom: 1px solid #999a9a;
+}
+
+/** friendfeed **/
+.friendfeed {
+  border: none !important;
+}
+
+.friendfeed .info a {
+  display: none !important;  
+}
+
+.friendfeed .bottom,
+.friendfeed .logo  {
+  display: none !important;  
+}
+
+
+/*************** 左タブ ***************/
+#left-tab {
+  float: left;
+  width: 20px;
+}
+
+#left-tab h1 {
+  display: none;
+}
+
+#left-tab ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+#left-tab li {
+  list-style-type:none;
+  display: block;
+}
+
+.left-tab-text {
+  display: block;
+  padding-left: 20px;
+  width: 0px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  margin-top: 5px;
+}
+
+#left-tab-blog {
+  background-image: url("/theme/img/blog_tab.png");
+  height: 58px;
+}
+
+#left-tab-about {
+  background-image: url("/theme/img/about_tab.png");
+  height: 75px;
+}
+
+/*************** トップバナー下 ***************/
+#header-icon-bar { 
+  margin: 0px 230px 0px 25px;
+  min-height: 16px;
+}
+
+#header-icons {
+  float:right;
+  margin: 0px;
+}
+
+#index-date {
+  margin: 6px auto auto 6px;
+  color: #8a8a8a;
+}
+
+/*************** トップバナー下インフォメーション ***************/
+#information-area {
+  margin: 0px 230px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  background-color: #ffffcc;
+  background-image: url("/theme/img/info_rt.png"); /* 28x28 */
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+#information-header {
+  border-top: 2px solid #d2d2b6;
+  margin-right: 28px;
+  padding: 0px 0px 0px 32px;
+}
+#information-contents {
+  background-image: url("/theme/img/info_rb.png"); /* 28x28 */
+  background-repeat: no-repeat;
+  background-position: bottom right;
+
+}
+#information-headline {
+  margin-right: 28px;
+  padding-left: 32px;
+  border-bottom: 2px solid #d2d2b6;
+}
+
+#information-area {
+  font-size: 90%;
+}
+
+
+
+#information-area h1 {
+  font-size: 120%;
+}
+
+#information-area h2 {
+  font-size: 100%;
+}
+
+
+/*************** 記事エリア ***************/
+#article-area {
+  margin: 14px 226px 0px 20px;
+  padding: 5px;
+  background-color: #ffffff;
+}
+
+#article-area h1 {
+  display: none;
+}
+
+#article-area .articles-per-day {
+  padding: 0px 0px 0px 6px;
+}
+
+#article-area h3 {
+  border-bottom: 1px solid;
+  padding: 0px 0px 0px 6px;
+  margin: 0px 6px 0.8em -6px;
+}
+
+#article-area p {
+  padding: 0px;
+}
+
+#article-area .article {
+  margin: 0.8em 0px 2em;
+  line-height: 150%;
+}
+
+.article blockquote {
+  border: 1px solid #000000;
+  margin-right: 2em;
+  margin-left: 2em;
+  background: #ffffe0;
+}
+
+.article pre {
+  border: 1px solid #000000;
+  padding: 8px;
+  background: #f0f0f0;
+}
+
+.article blockquote div {
+  margin: 8px;
+}
+
+.article img { 
+  border: 1px solid;
+}
+
+/********** 日付ヘッダ **********/
+#article-area .date-header {
+  height: 31px;
+  background-color: #dddddd;
+  background-image: url("/theme/img/datehead_l.png"); /* 13x31 */
+  background-repeat: no-repeat;
+  background-position: top left;
+  padding: 0px 0px 0px 13px;
+  margin: 0px;
+}
+#article-area .date-header .header-inner {
+  height: 31px;
+  padding: 0px 13px 0px 0px;
+  margin: 0px;
+  background-image: url("/theme/img/datehead_r.png"); /* 13x31 */
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  text-align: right;
+}
+
+#article-area .date-header h2 {
+  border-width: 1px 0px;
+  border-style: solid;
+  border-color: #9a9a9a;
+  font-size: 100%;
+  height: 20px;
+  color: #64a0dc;
+  margin: 0px;
+  padding: 4px 0px 5px 0px;
+  margin: 0px;
+}
+
+
+#article-area .date-header .date-number {
+  margin: 0px;
+  padding: 0px;
+}
+/********** 記事フッタ **********/
+#article-area .footer {
+/*  border-top: 1px solid #9a9a9a;*/
+  margin: 0px 6px 0px 0px;
+  text-align: right;
+}
+
+#article-area .footer .posted {
+  color: #9a9a9a;
+}
+
+/*************** フッタ ***************/
+#footer-area {
+  clear: both;
+  border-top: 1px solid #a0a09f;
+  padding: 5px 0px;
+}
+
+#footer-area .credit {
+  margin: 0px 100px 0px 0px;
+  padding: 0px;
+  text-align: center;
+  font-size: 80%;
+}
+
+#footer-area .pyblosxom-banner {
+  float: left;
+  margin: 0px 0px 0px 5px;
+  padding: 0px;
+}

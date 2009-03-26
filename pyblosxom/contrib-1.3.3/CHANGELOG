@@ -1,0 +1,220 @@
+Changes between contributed pack 1.3.2 and 1.3.3
+================================================
+
+comments
+
+ * fix a showstopper bug from the 1.3.2 release: don't render duplicate
+   comments in the course of populating template vars.
+
+ * avoid sending unnecessary params in ajax requests.
+
+ * make check_javascript more fault-tolerant to missing params.
+
+Changes between contributed pack 1.3.1 and 1.3.2
+================================================
+
+General
+
+ * reorganized directory structure.
+
+pycalendar
+
+ * fixed to be locale aware and also added a config property for specifying
+   which day to use as the first day of the week.  (Thanks Martin!)
+
+weblogsping
+
+ * fixed the plugin to handle error conditions.  (Thanks Ryan!)
+
+comments
+
+ * handle UTF-8 encoded text correctly. (Thanks makoshark!)
+
+ * add $cmt_optionally_linked_author template variable.
+
+ * add support for sending comment email notifications via a local MTA,
+   using the comment_mta_cmd config variable, instead of SMTP.
+
+ * add a simple new JavaScript-based anti-spam plugin, check_javascript.py.
+
+ * add the Akismet anti-spam filter, akismetcomments.py. (Thanks Mako and
+   Blake Winton!)
+
+ * add support for AJAX comments.
+
+ * added nofollow support to $cmt_optionally_linked_author. (Thanks, Todd
+   Warner, for the ping!)
+
+ * updated RSS template and code to support RSS feeds for comments on
+   individual posts. An RSS feed for all comments, site-wide, is yet to come.
+
+trackback and xmlrpc_pingback
+
+ * these are no longer subjected to comment_reject filtering plugins. a new
+   callback, trackback_reject, has been added for filtering trackbacks.
+   (Thanks Junji Nakanishi!)
+
+moinmoin
+
+ * now compatible with MoinMoin 1.5 as well as 1.0. (Thanks Zarick Lau!)
+
+editfile
+
+ * fixed to search the environment for editors.  (Thanks Mako!)
+
+
+Changes between contributed pack 1.3 and 1.3.1
+==============================================
+
+rst
+
+ * fixed two bugs that prevented the plugin from working.  (Thanks g2boojum!)
+
+
+Changes between contributed pack 1.2.2 and 1.3
+==============================================
+
+General
+
+ * Added release dates to CHANGELOG.txt file.
+
+ * Fixed all logging to use the new functions in PyBlosxom 1.3.
+
+comments
+
+ * Adjusted the behavior so that comments are shown if "showcomments=yes" 
+   is in the querystring or if the pyblosxom request is for a specific 
+   blog entry (as opposed to a category with only one blog entry in it).  
+   In doing this, I moved the code from cb_pathinfo to cb_prepare. 
+   (Thanks to Matt Weber for the idea!)
+     
+ * Removed the "showcomments=yes" from the comment-form html code.
+
+ * Fixes to allow the comments plugin work with Python 2.2.  (Thanks
+   Nathan!)
+
+ * Adjusted the documentation text to make it clearer that the bit
+   about what properties each entry needs to have applies only to
+   developers.  Added __description__ and __url__ information.
+
+ * Fixed issues with rendering.  Also removed the "if this is rss,
+   then don't do stuff".
+
+ * Fixed an issue where if the config.py file doesn't have blog_encoding
+   set, the comments plugin would die.
+
+ * Fixed a security problem where the url and author fields were not
+   getting sanitized.  (Thanks Tung Wai Yip!)
+
+ * Unfixed the url not getting sanitized--we already remove html from
+   it and sanitize unnecessarily adds an <a href...> </a> to it.
+
+ * Re-added the logging code that the comments plugin uses when things
+   go sour.
+
+ * Added SMTP-sanitization to the email field.  (Thanks David!)
+
+ * Changed the comment reject callback so that rejection plugins can
+   return 0 (the comment is fine), 1 (the comment is rejected) or
+   a tuple of 1 and the error message as a string.
+
+   For example:
+
+      return 0
+      return 1
+      return (1, "This comment contains a blacklisted address.")
+
+   (Thanks Steven!)
+
+ * Changed the format of the body of the email that the comments plugin
+   sends the blog owner to be more informational and readable.  
+   (Thanks Alec!)
+
+pycategories
+
+ * Fixed a cosmetic issue where an extra / was getting added to the
+   root url
+
+ * Fixed a problem where the finish template was incorrectly pulling
+   from the category_finish config property.  (Thanks Rob!)
+
+ * Fixed a problem where the totals weren't being counted correctly.
+   (Thanks Rob!)
+
+ * Added "_urlencoded" versions of the category variables.  (Thanks
+   Petteri!)
+
+rst entryparser
+
+ * Added two configurable options to the rst entryparser.  The first 
+   sets the starting level for rendered heading elements.  The second 
+   enables and disables the promotion of a lone top-level section title 
+   to the document title.  (Thanks Jan-Wijbrand!)
+
+ * Fixed the rst entryparser to handle metadata.  (Thanks to spanezz!)
+
+xmlrpc_metaweblog
+
+ * Fixed _getCategories so that it returns a list of dicts rather
+   than a list of strings.  This conforms to the metaWeblogApi
+   (http://www.xmlrpc.com/metaWeblogApi) and fixes the getCategories
+   request.  (Thanks Rob!)
+
+Changes between contributed pack 1.2.1 and 1.2.2 (21 June, 2005)
+================================================================
+
+General
+
+ * New CHANGELOG.txt file which describes the changes between this version
+   and the last as well as compatability and behavior issues.
+
+ * New README.txt file which describes what's in the contributed plugins
+   pack, where you can find it, and various other things about the contributed
+   plugins pack.
+
+genericwiki
+
+ * Matej updated genericwiki so that it works as an entryparser as well as
+   a preformatter.  Will fixed up the documentation.  genericwiki was moved
+   from the preformatter directory to the entryparser directory.  
+   (Thanks Matej!)
+
+pycategories
+
+ * Now has two new properites "category_start" which gets printed once before 
+   printing the category list and "category_finish" which gets printed once 
+   after printing the category list.  Additionally, the default values for 
+   "category_begin" and "category_end" were fixed.  This makes the default 
+   output for pycategories (x)html compliant.  (Thanks Joseph!)
+
+comments
+
+ * comments no longer shows comments by default!  In order to view comments
+   for a given entry, you must append "showcomments=yes" to the querystring.
+   THIS IS NOT A BACKWARDS-COMPATIBLE CHANGE!  (Thanks David!)
+
+ * comments no longer has documentation for the unused comments-rejected-words
+   property.
+
+ * comments no longer requires the email field.
+
+ * all the flavour templates for the comments plugin have been updated.
+
+ * We cleaned up the comment error messages so they're useful to the user.
+   (Thanks Nathaniel!)
+
+w3cdate
+
+ * w3cdate plugin now provides $w3cdate in head and foot templates.  It no
+   longer requires PyXML.  (Thanks to Steven and Matej!)
+
+
+Changes between contributed pack 1.2 and 1.2.1 (07 May, 2005)
+=============================================================
+
+ * bunch of fixes to comments and trackback plugins.
+
+ * overhauled pycategories plugin (see documentation at top of file for more
+   details).
+
+ * added licensing information to files and updated some documentation.

@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>$(blog_title_with_path) $(pi_da) $(pi_mo) $(pi_yr)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css">
+<link rel="stylesheet" type="text/css" href="$(css_dir)/holymachine.css">
+</head>
+<body bgcolor="#ffffff">
+
+<!-- トップバナー -->
+<div id="top-banner">
+  <div id="top-banner-inner">
+    <a href="$(base_url)/"><img src="$(img_dir)/holymachine.png" alt="holymachine" width="289" height="60" id="img-top-banner" /></a>
+  </div>
+</div>
+<!-- トップバナーここまで -->
+
+<!-- 右サイドバー -->
+<div id="right-sidebar">
+
+  <div id="right-sidebar-header"><h1 class="right-sidebar-header-text">holymachine's blog menu</h1></div>
+
+  <!-- カレンダー -->
+  <div id="right-sidebar-calendar">
+    <h2>カレンダー</h2>
+    <div class="right-sidebar-contents">
+      <div class="right-sidebar-calendar-img">
+        <img src="$(img_dir)/menu_top_img.jpg" width="200" height="150" alt="photo gallery"/>
+      </div>
+      <div class="text">
+	$(calendar)
+      </div>
+    </div>
+  </div>
+
+  <!-- ボックス：サイト紹介 -->
+  <div class="right-sidebar-box">
+    <h2>サイト情報</h2>
+    <div class="right-sidebar-contents">
+      <div class="text">
+	<h3>このサイトは？</h3>
+	<p>　エディター/ライター/プログラマー<a href="/s/about.html">hylom</a>が贈る、テクノロジー系blog風サイト。コンピュータやデジタルガジェット、プログラミング、Mac OS X/Linux/オープンソースソフトウェアなどに関する話題を提供します。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ボックス：最近の記事 -->
+  <div class="right-sidebar-box">
+    <h2>最近の執筆記事</h2>
+    <div class="right-sidebar-contents">
+      <div class="text">
+	<h3>最近のhylomの執筆記事</h3>
+	<p>
+	  <ul><li>SourceForge.JP Magazine:</li><li>
+	  <ul>
+	    <li><a href='http://sourceforge.jp/magazine/09/03/06/0822215'>Firefoxをインテル コンパイラーでコンパイルする</a></li>
+	    <li><a href='http://sourceforge.jp/magazine/09/02/25/1244257'>インテル コンパイラーでオープンソースソフトウェアをコンパイルしよう</a></li>
+	    <li><a href='http://sourceforge.jp/magazine/09/02/25/133236'>パフォーマンス解析ツール「VTune」でアプリケーションを高速化</a></li>
+	    <li><a href='http://sourceforge.jp/magazine/09/02/18/1117225'>インテル コンパイラーの実力を測る――インテル コンパイラー版MySQLは本当に速いのか？</a></li>
+	    <li><a href='http://sourceforge.jp/magazine/09/02/12/0530242'>WindowsでのGit環境構築とその注意点</a></li>
+	    <li><a href='http://sourceforge.jp/magazine/09/02/02/0655246'>分散バージョン管理システムGit入門</a></li>
+	</ul></li>
+	    </ul>
+	    </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- friendfeed -->
+  <div class="solid-box">
+    <h2>hylom's activity</h2>
+    <h3>hylom's activity</h3>
+<script type="text/javascript" src="http://friendfeed.com/embed/widget/hylom?v=2"></script><noscript><a href="http://friendfeed.com/hylom"><img alt="View my FriendFeed" style="border:0;" src="http://friendfeed.com/embed/widget/hylom?v=2&format=png"/></a></noscript>
+  </div>
+
+  <!-- 3つ目のボックス -->
+  <div class="right-sidebar-box">
+    <h2>リンク</h2>
+    <div class="right-sidebar-contents">
+      <div class="text">
+        <h3>リンク</h3>
+        <ul>
+          <li><a href="http://slashdot.jp/">
+	     <img src="/theme/img/sd150x44.png" alt="Slashdot Japan" />
+          </a></li>
+          <li><a href="http://sourceforge.jp/">
+	      <img src="/theme/img/sf125x39.png" alt="SourceForge.JP" />
+	  </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- 右サイドバーここまで -->
+
+<!-- 左サイドタブ -->
+<div id="left-tab" >
+<h1>holymachine's contents shortcut</h1>
+<ul>
+  <li><a href="/"><span class="left-tab-text" id="left-tab-blog">blog</span></a></li><!--画像：blog-tab.png 20x58 -->
+  <li><a href="/s/about.html"><span class="left-tab-text" id="left-tab-about">about</span></a></li><!-- 画像："about_tab.png 20x75 -->
+</ul>
+</div>
+<!-- 左サイドタブここまで -->
+
+<!-- アイコン置き場 -->
+<div id="header-icon-bar">
+  <div id="header-icons">
+    <a href="$(base_url)/index.rss20"><img src="$(img_dir)/rss20.png" width="64" height="16" border="0" alt="RSS 2.0"></a>
+    <a href="$(base_url)/index.atom"><img src="$(img_dir)/atom10.png" width="72" height="16" border="0" alt="ATOM 1.0"></a>
+  </div>
+
+  <div id="index-date">$(pi_da) $(pi_mo) $(pi_yr)</div>
+</div>
+
+<!-- ここにinformation-area入れる -->
+
+<!-- 記事エリア -->
+<div id="article-area">
+<h1>holymachine's recent blog index</h1>
+

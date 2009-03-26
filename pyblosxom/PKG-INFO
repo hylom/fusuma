@@ -1,0 +1,18 @@
+Metadata-Version: 1.0
+Name: pyblosxom
+Version: 1.4.3
+Summary: PyBlosxom is a weblog engine that uses the filesystem to store your entries.
+Home-page: http://pyblosxom.sourceforge.net/
+Author: Will Guaraldi
+Author-email: pyblosxom-devel@lists.sourceforge.net
+License: MIT
+Description: UNKNOWN
+Keywords: blog pyblosxom cgi weblog
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console (Text Based), Web Environment
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT/X Consortium License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
