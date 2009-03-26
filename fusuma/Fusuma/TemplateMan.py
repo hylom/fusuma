@@ -79,9 +79,15 @@ path: <a href="${base_url}/${absolute_path_urlencoded}" title="path">/${absolute
 """
 
         template_of["html_header"] = """
-<html><head>
+<?xml version="1.0" encoding="UTF_8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
   <title>${title}</title>
-${heads}
+  <meta http-equiv="content-script-type" content="text/javascript" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  ${heads}
 </head>
 <body>
 """
@@ -173,21 +179,36 @@ ${filer_body}
         template_of["login"] = """[%insert(http_header)%]
 [%insert(html_header)%]
 
+<script type="text/javascript" src="/jq/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="/jq/jquery.sha1.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+
 ${error_message}
 
 <div class="login-form">
-  <form action="${SCRIPT_NAME}/login/" method="post">
+  <form action="${SCRIPT_NAME}/login/" method="post" id="fsm-login-form">
     <input type="hidden" name="return_to" value="/" />
     <input type="hidden" name="login" value="1" />
+    <input type="hidden" name="cr_id" value="${cr_id}" />
+    <input type="hidden" name="cr_key" value="${cr_key}" />
+    <input type="hidden" name="cr_auth" value="off" />
+
     <div id="login-form-loginname">
       <span>login:</span><input type="text" name="loginname" value="" />
     </div>
+
     <div id="login-form-password">
     <span>password:</span><input type="password" name="password" />
     </div>
+
     <div id="login-form-preserve">
     <span><input type="checkbox" id="preserve" name="preserve" /><label for="preserve">preserve login status</label></span>
     </div>
+
+    <div id="login-form-usecr">
+    <span><input type="checkbox" id="use_challenge" name="use_challenge" /><label for="use_challenge">use challenge &amp; responsepreserve auth.</label></span>
+    </div>
+
     <div id="login-form-submit">
       <input type="submit" value="login" />
     </div>

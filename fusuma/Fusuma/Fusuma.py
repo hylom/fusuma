@@ -88,6 +88,8 @@ class Fusuma(BackWall.BackWall):
         This is Fusuma's main routine.
         """
 
+#        print "Content-type: text/html;\n\n"
+
 #        if self.path_info() == "/do_login/":
 #            self._do_login()
 #            return
@@ -153,16 +155,26 @@ class Fusuma(BackWall.BackWall):
 
         loginname = self.param("loginname")
         passwd = self.param("password")
+        cr_id = self.param("cr_id")
+        cr_key = self.param("cr_key")
+        cr_auth = self.param("cr_auth")
 
         if (loginname == None) or (loginname == ""):
             self._login_error()
             return
+        if passwd == None:
+            passwd = ""
 
-        pwman = PasswordMan.PasswordMan( self.get_config("path_to_users_db") )
-        userId = pwman.get_userId( loginname, passwd )
+        pwman = PasswordMan.PasswordMan(self.get_config("path_to_users_db"), self.get_config("temp_dir"))
+
+        if cr_auth == "on":
+            userId = pwman.get_userId_with_cr(loginname, passwd, cr_id)
+        else:
+            userId = pwman.get_userId(loginname, passwd)
 
         if userId < 0:
             self._login_error()
+            #print "login:" + loginname + " passwd:" + passwd
             return
         else:
             self._login_succeed()
@@ -173,9 +185,14 @@ class Fusuma(BackWall.BackWall):
         """
 
   #      print self.http_header("text/html; charset=utf-8;")
-        template_args = dict( title="fsm login",
-                              error_message="" )
-
+        # create challenge id & key
+        pwman = PasswordMan.PasswordMan( self.get_config("path_to_users_db"), self.get_config("temp_dir") )
+        (id, key) =  pwman.challenge_key()
+        template_args = {"title":"fsm login",
+                         "error_message":"",
+                         "cr_id":id,
+                         "cr_key":key,
+                         }
         print self.parse_template( "login", template_args )
 
 
