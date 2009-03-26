@@ -68,11 +68,7 @@ foreach my $item ( @{$item_list} ) {
 #	}
 	print $output_fh $item->{title}, "\n";
 #	print $output_fh $item->{dc}->{date}, "\n";
-#	print $output_fh $item->{content}->{encoded}, "\n";
-
-	my $body_text = $item->{description};
-	$body_text =~ s/\n/<br>/g;
-	print $output_fh $body_text;
+	print $output_fh $item->{content}->{encoded}, "\n";
 #	print $output_fh $item->{description} "\n";
 #	print $item{content:encoded}, "\n";
 

@@ -154,11 +154,7 @@ class Fusuma(BackWall.BackWall):
         loginname = self.param("loginname")
         passwd = self.param("password")
 
-        if (loginname == None) or (loginname == ""):
-            self._login_error()
-            return
-
-        pwman = PasswordMan.PasswordMan( self.get_config("path_to_users_db") )
+        pwman = PasswordMan.PasswordMan()
         userId = pwman.get_userId( loginname, passwd )
 
         if userId < 0:

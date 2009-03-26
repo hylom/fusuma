@@ -17,7 +17,4 @@ fusuma["plugin_dir"] = "/Users/hylom/Sites/fusuma/fusuma/plugins"
 fusuma["lcomment_script_url"] = "/fsm/lcomment.py"
 fusuma["lcomment_root"] = "/Users/hylom/Sites/fusuma/LiteComment"
 fusuma["lcomment_path_to_db"] = "/Users/hylom/Sites/fsm/comment/comment.db"
-
-fusuma["path_to_users_db"] = "/Users/hylom/Sites/fsm/DBs/users.db"
-
 # py["plugins"] = ["pycalendar"]
