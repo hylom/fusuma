@@ -74,6 +74,7 @@ ${preview_html}
     <label for="story-edit-tags">tags:</label>
     <input type="text" name="tags" id="story-edit-tags">
   </div>
+  ${select_form}
   <div>
     <input name="mode" type="submit" value="preview">
     <input name="mode" type="submit" value="post">
@@ -81,6 +82,15 @@ ${preview_html}
 </div>
 
 [%insert(html_footer)%]
+"""
+
+_dir_select_template_begin = """<div><select name="dir" id="story-edit-dir">
+"""
+
+_dir_select_template_elems = """  <option value="%(val)s">%(key)s</option>
+"""
+
+_dir_select_template_end = """</select></div>
 """
 
 def fsm_add_handlers(fsm):
@@ -96,9 +106,17 @@ def new_story(fsm):
 
 #        print self.http_header("text/html; charset=utf-8;")
 
+    select_form = _dir_select_template_begin
+    # build select form
+    for dir in _get_directories(fsm):
+        select_form = select_form + _dir_select_template_elems % {"val":dir, "key":dir}
+    select_form = select_form + _dir_select_template_end
+        
     mode = fsm.param("mode")
-    args = dict( title = "new story",
-                 preview_html = "" )
+    args = {"title":"new story",
+            "preview_html":"",
+            "select_form":select_form,
+            }
 
     if mode == "preview":
         prv_args = dict()
@@ -114,13 +132,17 @@ def new_story(fsm):
 
     print fsm.parse_template( "new_story", args )
 
-def _stringfy(strings):
-    """
-    build text-data from title, body, ...
-    """
 
-def _post(fsm, string, date):
+def _get_directories(fsm):
     """
-    do post operation.
+    get directries.
     """
+    dir = fsm.get_py_cfg("datadir")
+    list = dircache.listdir(dir)
+    dirs = []
+    for item in list:
+        if os.path.isdir(os.path.join(dir, item)):
+            dirs.append(item)
+    return dirs
+
     

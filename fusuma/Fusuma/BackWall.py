@@ -82,6 +82,9 @@ class BackWall(TCGITools.TCGI):
     def set_py_cfg(self, py_cfg):
         self._py_cfg = py_cfg
 
+    def get_py_cfg(self, key, default=""):
+        return self._py_cfg.get(key, default)
+
     def session(self):
         """
         return current session.
