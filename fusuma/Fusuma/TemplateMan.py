@@ -87,6 +87,7 @@ ${heads}
 
         template_of["import_rss"] = """[%insert(http_header)%]
 [%insert(html_header)%]
+[%insert(general_header)%]
 <hr>
 ${body}
 <hr>
@@ -95,6 +96,7 @@ ${body}
 
         template_of["filer"] = """[%insert(http_header)%]
 [%insert(html_header)%]
+[%insert(general_header)%]
 <hr>
 <form method="post" enctype="multipart/form-data" action="${SCRIPT_NAME}/filer/${file_rurl}">
 <div class="create">
@@ -112,6 +114,7 @@ ${filer_body}
 
         template_of["editor"] = """[%insert(http_header)%]
 [%insert(html_header)%]
+[%insert(general_header)%]
 <hr>
 <form method="post" enctype="multipart/form-data" action="${SCRIPT_NAME}/editor/${PATH}">
 <div class="textarea">
@@ -128,6 +131,7 @@ ${filer_body}
 #########################################################################
         template_of["editor_flavours"] = """[%insert(http_header)%]
 [%insert(html_header)%]
+[%insert(general_header)%]
 <hr>
 <form method="post" enctype="multipart/form-data" action="${SCRIPT_NAME}/editor_flavours/${PATH}">
 <div class="textarea">
@@ -144,6 +148,7 @@ ${filer_body}
 
         template_of["editor_css"] = """[%insert(http_header)%]
 [%insert(html_header)%]
+[%insert(general_header)%]
 <hr>
 <form method="post" enctype="multipart/form-data" action="${SCRIPT_NAME}/editor_css/${PATH}">
 <div class="textarea">
@@ -216,7 +221,7 @@ ${error_message}
   </ul>
 </div>
 """
-
+        template_of["general_header"] = template_of["header_bar"]
 
         self._template_of = template_of
 
