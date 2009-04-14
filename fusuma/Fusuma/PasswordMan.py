@@ -152,9 +152,9 @@ create table users_table (
         print self._path_to_db
         conn = sqlite3.connect( self._path_to_db )
         cur = conn.cursor()
-        cur.execute("begin transaction;")
+        #cur.execute("begin transaction;")
         cur.execute(sql_command1)
-        cur.execute("end transaction;")
+        #cur.execute("end transaction;")
         conn.close()
 
 
