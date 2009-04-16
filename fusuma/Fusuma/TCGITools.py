@@ -61,7 +61,7 @@ class TCGI(object):
         """
         pathinfo = os.environ.get("PATH_INFO", "")
         if os.name == "nt":
-            scriptname = self.script_name()
+            scriptname = getScriptname()
             if pathinfo.startswith(scriptname):
                 pathinfo = pathinfo[len(scriptname):]
         return pathinfo

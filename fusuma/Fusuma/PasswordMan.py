@@ -49,7 +49,7 @@ class PasswordMan(object):
 
     def get_userId(self, username, passwd):
         """
-        if username and password are validated, return userId.
+        This is Fusuma's main routine.
 
         @param username: username string
         @type username: string

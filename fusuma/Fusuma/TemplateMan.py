@@ -63,17 +63,6 @@ class TemplateMan(object):
         self._macro_insert = re.compile(r"\[%insert\((.*?)\)%\]")
 
 #const        
-        template_of["story.html"] = """
-<div class="article">
-<h3><a name="${fn}">${title}</a></h3>
-${body}
-<div class="footer">
-<span class="posted">[posted at ${ti}]</span>
-path: <a href="${base_url}/${absolute_path_urlencoded}" title="path">/${absolute_path}</a>
-<a href="${base_url}/${file_path_urlencoded}.${flavour}">permlink</a>
-</div>
-</div>
-"""
         template_of["http_header"] = """Content-type: text/html; charset=utf-8;
 
 """
@@ -104,6 +93,7 @@ path: <a href="${base_url}/${absolute_path_urlencoded}" title="path">/${absolute
 
         template_of["import_rss"] = """[%insert(http_header)%]
 [%insert(html_header)%]
+[%insert(general_header)%]
 <hr>
 ${body}
 <hr>
@@ -112,6 +102,7 @@ ${body}
 
         template_of["filer"] = """[%insert(http_header)%]
 [%insert(html_header)%]
+[%insert(general_header)%]
 <hr>
 <form method="post" enctype="multipart/form-data" action="${SCRIPT_NAME}/filer/${file_rurl}">
 <div class="create">
@@ -129,6 +120,7 @@ ${filer_body}
 
         template_of["editor"] = """[%insert(http_header)%]
 [%insert(html_header)%]
+[%insert(general_header)%]
 <hr>
 <form method="post" enctype="multipart/form-data" action="${SCRIPT_NAME}/editor/${PATH}">
 <div class="textarea">
@@ -145,6 +137,7 @@ ${filer_body}
 #########################################################################
         template_of["editor_flavours"] = """[%insert(http_header)%]
 [%insert(html_header)%]
+[%insert(general_header)%]
 <hr>
 <form method="post" enctype="multipart/form-data" action="${SCRIPT_NAME}/editor_flavours/${PATH}">
 <div class="textarea">
@@ -161,6 +154,7 @@ ${filer_body}
 
         template_of["editor_css"] = """[%insert(http_header)%]
 [%insert(html_header)%]
+[%insert(general_header)%]
 <hr>
 <form method="post" enctype="multipart/form-data" action="${SCRIPT_NAME}/editor_css/${PATH}">
 <div class="textarea">
@@ -248,38 +242,7 @@ ${error_message}
   </ul>
 </div>
 """
-
-        template_of["new_story"] = """[%insert(http_header)%]
-[%insert(html_header)%]
-
-${preview_html}
-
-<div id="story-edit">
-<form action="${SCRIPT_NAME}/new_story/" method="post">
-  <div>
-    <label for="story-edit-title">title:</label>
-    <input type="text" name="title" id="story-edit-title">
-  </div>
-  <div>
-    <label for="story-edit-date">date:</label>
-    <input type="text" name="date" id="story-edit-date">
-  </div>
-  <div>
-    <label for="">body:</label>
-    <textarea name="body" id="story-edit-body"></textarea>
-  </div>
-  <div>
-    <label for="story-edit-tags">tags:</label>
-    <input type="text" name="tags" id="story-edit-tags">
-  </div>
-  <div>
-    <input name="mode" type="submit" value="preview">
-    <input name="mode" type="submit" value="post">
-  </div>
-</div>
-
-[%insert(html_footer)%]
-"""
+        template_of["general_header"] = template_of["header_bar"]
 
         self._template_of = template_of
 

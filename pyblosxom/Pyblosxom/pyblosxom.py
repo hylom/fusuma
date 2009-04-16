@@ -483,11 +483,6 @@ class PyBlosxomWSGIApp:
         if "PATH_INFO" not in env:
             env["PATH_INFO"] = ""
 
-        if env.get("SERVER_SOFTWARE","").find("IIS") != -1:
-            tmp_path_info = env.get("PATH_INFO","")
-            tmp_script_name = env.get("SCRIPT_NAME","")
-            env["PATH_INFO"] = tmp_path_info.replace(tmp_script_name, "", 1)
-
         p = PyBlosxom(dict(self.config), env)
         p.run()
 
