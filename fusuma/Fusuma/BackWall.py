@@ -73,11 +73,17 @@ class BackWall(TCGITools.TCGI):
         except AttributeError:
             return ""
 
+    def add_template(self, key, template):
+        self._template_man.add_template(key, template)
+
     def get_context_args(self):
         return self._context_args
 
     def set_py_cfg(self, py_cfg):
         self._py_cfg = py_cfg
+
+    def get_py_cfg(self, key, default=""):
+        return self._py_cfg.get(key, default)
 
     def session(self):
         """
