@@ -200,7 +200,7 @@ ${error_message}
     </div>
 
     <div id="login-form-usecr">
-    <span><input type="checkbox" id="use_challenge" name="use_challenge" /><label for="use_challenge">use challenge &amp; responsepreserve auth.</label></span>
+    <span><input type="checkbox" id="use_challenge" name="use_challenge" disabled="disabled" /><label for="use_challenge">use challenge &amp; response auth.</label></span>
     </div>
 
     <div id="login-form-submit">

@@ -25,4 +25,5 @@ var fsmLogin = {
 $(function(){
 		$("#fsm-login-form").submit(fsmLogin.onSubmit);
 		document.forms["fsm-login-form"].use_challenge.checked = true;
+		document.forms["fsm-login-form"].use_challenge.disabled = false;
 	});
