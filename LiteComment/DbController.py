@@ -4,7 +4,8 @@
 """
 DbController.py  - Database Controller for Webpage comment system.
 """
-import sys, os
+import sys
+import os
 import sqlite3
 import time
 
@@ -35,13 +36,12 @@ class DbController(object):
 create table comment_table (
   cid      integer primary key autoincrement, /* comment ID */
   sid      text not null,                  /* story ID */
-  cindex   integer not null,               /* comment index */
   state    integer default 0,              /* comment status */
-  name     text,                           /* poster's name */
-  comment  text not null,                  /* comment body */
   date     real not null,                  /* post date */
+  name     text,                           /* poster's name */
   email    text,                           /* email address */
-  ipaddr   text                            /* IP address */
+  ipaddr   text,                            /* IP address */
+  comment  text not null                  /* comment body */
 );"""
 
         sql_command2 = """
@@ -59,6 +59,15 @@ create table comment_index (
         cur.execute(sql_command2)
         cur.execute("end transaction;")
         conn.close()
+
+    def get_comments_info(self):
+        """
+        """
+        conn = sqlite3.connect( self._path_to_db )
+        cur = conn.cursor()
+        sql_cmd = """
+"""
+        
 
     def list_all_comments( self, sid ):
         """
@@ -145,37 +154,46 @@ select counter from comment_index where sid=:sid;
         Insert new comment to tail.
         """
 
-        cindex = self.number_of_comments( sid )
         timestamp = time.time()
-
-        sql_add_comment = """
-insert into comment_table ( sid, cindex, state, name,
-                            comment, date, email, ipaddr )
-                    values( :sid, :cindex, :state, :name,
-                            :comment, :date, :email, :ipaddr );
+        sql_cmd = """
+select counter from comment_index where sid = ?
 """
-
-        sql_update_comment = ""
-        if cindex == 0:
+        #TODO: implement error routine.
+        conn = sqlite3.connect( self._path_to_db )
+        cur = conn.cursor()
+        cur.execute(sql_cmd, (sid,))
+        row = cur.fetchone()
+        if row == None:
+            counter = 1
             sql_update_comment = """
 insert into comment_index(sid,counter) values( :sid, :counter );
 """
         else:
+            counter = row[0] + 1
             sql_update_comment = """
 update comment_index set counter=:counter where sid=:sid;
 """
 
+        conn.commit()
+        conn.close()
 
-        add_values = { "sid":sid,
-                       "cindex":cindex, 
-                       "state":state,
-                       "name":name,
-                       "comment":comment,
-                       "date":timestamp,
-                       "email":email,
-                       "ipaddr":ipaddr }
-
-        update_values = { "counter": cindex + 1,
+        sql_add_comment = """
+insert into comment_table(sid,  state, name,
+                            comment, date, email, ipaddr )
+                    values(:sid, :state, :name,
+                            :comment, :date, :email, :ipaddr );
+"""
+        add_values = {
+            "sid":sid,
+            "state":state,
+            "name":name,
+            "comment":comment,
+            "date":timestamp,
+            "email":email,
+            "ipaddr":ipaddr
+            }
+        
+        update_values = { "counter": counter,
                           "sid": sid }
 
         #TODO: implement error routine.
@@ -185,7 +203,6 @@ update comment_index set counter=:counter where sid=:sid;
 #        cur.execute("begin transaction;")
         cur.execute(sql_add_comment, add_values)
         cur.execute(sql_update_comment, update_values)
-#        cur.execute(sql_update_comment)
 #        cur.execute("commit;")
 
         conn.commit()
