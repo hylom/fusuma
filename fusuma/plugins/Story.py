@@ -118,6 +118,7 @@ def new_story(fsm):
     select_form = select_form + _dir_select_template_end
         
     mode = fsm.param("mode")
+    dstr = datetime.datetime.today().strftime("%Y%m%d") + "_"
     args = {"title":"new story",
             "preview_html":"",
             "select_form":select_form,
@@ -126,7 +127,7 @@ def new_story(fsm):
             "se_body":"",
             "se_tags":"",
             "se_mode":"",
-            "se_filename":"",
+            "se_filename":dstr,
             
             }
 

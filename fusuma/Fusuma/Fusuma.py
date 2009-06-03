@@ -71,7 +71,8 @@ class Fusuma(BackWall.BackWall):
 
             if not os.path.isfile(file_path):
                 continue
-
+            if filename == "plugin.py":
+                continue
             if re.search( r"\.py$", filename ):
                 module_name = re.sub( r"\.py$", "", filename)
                 module = __import__(module_name)
