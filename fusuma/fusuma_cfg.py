@@ -21,3 +21,5 @@ fusuma["lcomment_path_to_db"] = "/Users/hylom/Sites/fsm_datas/comment.db"
 fusuma["path_to_users_db"] = "/Users/hylom/Sites/fsm_datas/users.db"
 fusuma["temp_dir"] = "/Users/hylom/Sites/fsm_datas/"
 # py["plugins"] = ["pycalendar"]
+
+fusuma["database_dir"] = "/Users/hylom/Sites/fsm_datas/"

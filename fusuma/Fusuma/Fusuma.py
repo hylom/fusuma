@@ -74,6 +74,8 @@ class Fusuma(BackWall.BackWall):
 
             if re.search( r"\.py$", filename ):
                 module_name = re.sub( r"\.py$", "", filename)
+                if module_name == "plugin":
+                    continue
                 module = __import__(module_name)
                 module.fsm_add_handlers(self)
 

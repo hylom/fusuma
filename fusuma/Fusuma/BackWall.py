@@ -17,6 +17,7 @@ __revision__ = "$Revision: 1.1 $"
 import cgi
 import sys
 import os
+import os.path
 import Cookie
 import datetime
 import locale
@@ -55,6 +56,14 @@ class BackWall(TCGITools.TCGI):
         self._session_man = SessionMan( database_dir=self._config["session_objs_dir"] )
         self._template_man = TemplateMan()
         self._context_args = dict( os.environ, heads = "" )
+
+    def get_database(self, database):
+        db_path = os.path.join(self.get_config_safe("database_dir"), database + ".db")
+        db = fsmdb.FsmDbSQLite(db_path)
+        return db;
+
+    def get_config_safe(self, key):
+        return self_config[key]
 
     def get_config(self, key, default=""):
         return self._config.get( key, default )
