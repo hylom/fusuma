@@ -26,6 +26,7 @@ import TCGITools
 import PasswordMan
 from SessionMan import SessionMan
 from TemplateMan import TemplateMan
+import fsmdb
 
 VERSION = "0.0.1"
 VERSION_DATE = VERSION + " 09/03/2008"
@@ -63,7 +64,7 @@ class BackWall(TCGITools.TCGI):
         return db;
 
     def get_config_safe(self, key):
-        return self_config[key]
+        return self._config[key]
 
     def get_config(self, key, default=""):
         return self._config.get( key, default )

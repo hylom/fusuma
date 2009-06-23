@@ -44,6 +44,17 @@ class FsmDbOrderdDict(dict):
         """ list of keys """
         return self.seq
 
+class FsmDbItem(object):
+    """
+    This is FsmDb's Item class.
+    """
+ 
+    def __init__(self):
+        """
+        initialize FsmDbItem
+
+        """
+   
 
 class FsmDbSQLite(object):
     """
@@ -63,6 +74,7 @@ class FsmDbSQLite(object):
     def _connect(self):
         if self._connection == None:
             self._connection = sqlite3.connect(self._path_to_db)
+            self._connection.row_factory = sqlite3.Row
 
 
     def _cursor(self):
@@ -79,6 +91,8 @@ class FsmDbSQLite(object):
     def close(self):
         self._close_connect()
 
+    def isExists(self):
+        pass
 
     def begin(self):
         """begin transaction"""
@@ -94,7 +108,7 @@ class FsmDbSQLite(object):
 
     def select(self, table_name, expr=None):
         if expr != None:
-            sql_cmd = "SELECT * FROM %s WHERE %s" % table_name
+            sql_cmd = "SELECT * FROM %s WHERE %s" % (table_name, expr)
         else:
             sql_cmd = "SELECT * FROM %s" % table_name
         cur = self._cursor()
@@ -125,9 +139,26 @@ class FsmDbSQLite(object):
 
         cur.execute(sql_cmd, t)
         cur.close()
+        self.commit()
 
 
     def create_table(self, table_name, prototype):
+        """
+        create table to database.
+
+        @param table_name: name of table to create
+        @type table_name: string
+
+        @param prototype: list of (keyname, type) tuple
+        @type prototype: list of tuple
+        """
+
+        col_list = [tpl[0] for tpl in prototype]
+        type_list = [tpl[1] for tpl in prototype]
+
+        self._create_table(table_name, col_list, type_list)
+
+    def create_table_from_Dict(self, table_name, prototype):
         """
         create table to database.
 

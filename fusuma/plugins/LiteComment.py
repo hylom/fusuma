@@ -20,6 +20,7 @@ VERSION_SPLIT = tuple(VERSION.split('.'))
 
 import re
 import Fusuma
+import extentions.lcomment
 
 def fsm_add_handlers(fsm):
     fsm.append_url_handler( re.compile(r"^/lcomment/"), main_handler )
@@ -38,6 +39,8 @@ name:<input type="text" name="name" class="lcomment_name" size="60" />
 </select><br/>
 email:<input type="text" name="email" class="lcomment_email" size="60" /><br/>
 <textarea name="comment" class="lcomment_comment" cols="80" rows="10" wrap="soft"></textarea><br/>
+
+return url:<input type="text" name="ret_url" class="lcomment_ret_url" size="60" />
 
 <input type="submit" name="op" value="add" />
 </div>
@@ -65,7 +68,28 @@ def main_handler(fsm):
     """
     url_basedir = re.sub( r"fsm\.py$", "", fsm.script_name() )
     args = dict( title = "edit",
-                 lcomment_url = url_basedir + "lcomment.py",
+                 lcomment_url = url_basedir + "comment.py",
                  )
-        
-    print fsm.parse_template( "LiteComment_root", args )
+
+    if fsm.param("op") == "add":
+        add(fsm)
+    elif fsm.param("op") == "show":
+        show(fsm)
+    else:
+        print fsm.parse_template( "LiteComment_root", args )
+
+def add(fsm):
+    sid = fsm.param("sid")
+    if fsm.param("state") == "show":
+        state = 1
+    else:
+        state = 0
+    name = fsm.param("name")
+    email = fsm.param("email")
+    ipaddr = fsm.param("REMOTE_ADDR")
+    comment = fsm.param("comment")
+
+    lwc = lcomment.LWComment(fsm)
+    lwc.append_comment(sid=sid, state=state, name=name,
+                       email=email, ipaddr=ipaddr, comment=comment)
+
