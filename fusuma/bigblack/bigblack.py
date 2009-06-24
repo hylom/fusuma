@@ -25,10 +25,10 @@ class BigBlack(object):
     def __init__(self):
         """Creates the Backwall object."""
 
-        self._load_config()
+        self.load_config()
 
 #### configuration functions
-    def _load_config(self, config_dir=""):
+    def load_config(self, config_dir=""):
         """load config file.
 
         @param configfile: config file's directory
@@ -133,6 +133,15 @@ class BigBlack(object):
 
 #### cgi exection dispatcher functions
     def run(self):
+        if os.environ.get("METHOD") in ("GET", "POST"):
+            return self.dispatch()
+        else:
+            return self.standalone()
+
+    def standalone(self):
+        self.root()
+
+    def dispatch(self):
         p = self.path_info()
         pathspec = p.split("/")
         if len(pathspec) > 1:
@@ -141,7 +150,7 @@ class BigBlack(object):
                 f = getattr(self, func)
                 f()
             except AttributeError:
-                self.root()
+                self.fallback()
         else:
             self.root()
 

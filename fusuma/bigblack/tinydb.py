@@ -14,6 +14,7 @@ VERSION_DATE = VERSION + " 06/16/2009"
 VERSION_SPLIT = tuple(VERSION.split('.'))
 
 import sqlite3
+import os.path
 
 class TinyDbError(Exception):
     def __init__(self, value):
@@ -87,8 +88,12 @@ class TinyDbSQLite(object):
     def close(self):
         self._close_connect()
 
-    def isExists(self):
-        pass
+    def exists(self):
+        if self._connection:
+            return True
+        else:
+            return os.path.isfile(self._path_to_db)
+
 
     def begin(self):
         """begin transaction"""
@@ -137,6 +142,9 @@ class TinyDbSQLite(object):
         cur.close()
         self.commit()
 
+    def get_db_path(self):
+        """return database file's path."""
+        return self._path_to_db
 
     def create_table(self, table_name, prototype):
         """

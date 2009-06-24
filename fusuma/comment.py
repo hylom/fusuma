@@ -9,12 +9,15 @@
 # $Id:  $
 #######################################################################
 
-import bigblack
+from bigblack import bigblack
+from bigblack import bbtinydb
+import time
 
 class CommentCGI(bigblack.BigBlack):
     def __init__(self):
-	self._database = "lcomment"
-        self._comment_tbl = "comment"
+        self.load_config()
+	self._database_name = "lcomment"
+        self._comment_tbl_name = "comment"
 
     def root(self):
         if self.param("op") != "add":
@@ -38,6 +41,11 @@ class CommentCGI(bigblack.BigBlack):
         self.show_from_template("comment", "ok", templ_param)
         return 1
 
+    def error(self):
+        print self.http_header()
+        print self.html_header(title="error")
+        print self.html_body("<p>some error occured.</p>")
+
     def append_comment(self, sid="", state="0", date=time.time(), 
                        name="", email="", ipaddr="", comment=""):
         if comment == "" or ipaddr == "" or sid == "":
@@ -46,9 +54,41 @@ class CommentCGI(bigblack.BigBlack):
         comment_data = dict(sid=sid, state=state, date=date,
                             name=name, email=email, ipaddr=ipaddr,
                             comment=comment)
-        db = self.get_database(self._database)
+        db = self.get_database(self._database_name)
         db.insert(self._comment_tbl, comment_data)
 
+    def standalone(self):
+        db = self.get_database(self._database_name)
+        print "checking database..."
+        if not db.exists():
+            print "database doesn't exists."
+            self._create_table(db)
+            print " -> create database: %s" % (self._database_name + ".db")
+        else:
+            print "databasae exists: %s." % (self._database_name + ".db")
+
+        print "done."
+
+    def _create_table(self, db):
+#  cid      integer primary key autoincrement, /* comment ID */
+#  sid      text not null,                  /* story ID */
+#  state    integer default 0,              /* comment status */
+#  date     real not null,                  /* post date */
+#  name     text,                           /* poster's name */
+#  email    text,                           /* email address */
+#  ipaddr   text                            /* IP address */
+#  comment  text not null,                  /* comment body */
+        prototype = (
+            ("cid", "integer primary key autoincrement"),
+            ("sid", "text not null"),
+            ("state", "integer default 0"),
+            ("date", "real not null"),
+            ("name", "text"),
+            ("email", "text"),
+            ("ipaddr", "text"),
+            ("comment", "text not null")
+            )
+        db.create_table(self._comment_tbl_name, prototype)
 
 cgi = CommentCGI()
 cgi.run()
