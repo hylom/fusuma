@@ -15,9 +15,9 @@ import time
 
 class CommentCGI(bigblack.BigBlack):
     def __init__(self):
-        self.load_config()
-	self._database_name = "lcomment"
-        self._comment_tbl_name = "comment"
+        super(CommentCGI,self).__init__()
+        self.import_config("_database_name", key="database_name", validate=True, description="database's filename")
+        self.import_config("_comment_tbl_name", key="comment_tbl_name", validate=True, description="name of table where comment is stored")
 
     def root(self):
         if self.param("op") != "add":
@@ -58,6 +58,7 @@ class CommentCGI(bigblack.BigBlack):
         db.insert(self._comment_tbl, comment_data)
 
     def standalone(self):
+        self.check_config_all()
         db = self.get_database(self._database_name)
         print "checking database..."
         if not db.exists():

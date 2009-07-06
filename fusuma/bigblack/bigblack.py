@@ -46,6 +46,48 @@ class BigBlack(object):
     def get_config_with_default(self, key, default):
         return self._config.get(key, default)
 
+    def import_config(self, attr, key, validate, description=""):
+        """
+        read config file, and validate, then regist as self's attribute.
+
+        @param attr: attribute name append as self's attribute
+        @type attr: string
+
+        @param key: config's key
+        @type key: string
+
+        @param validate: if True, assert when key doesn't exist in config.
+        @type validate: Bool
+        """
+        if not self._config.has_key(key):
+            if validate:
+                str = "config key '%s' doesn't exist. description: %s" % (key,description)
+                raise Exception(str)
+            setattr(self, attr, None)
+        else:
+            setattr(self, attr, self._config[key])
+
+        try:
+            self._imported[attr] = description
+        except AttributeError:
+            self._imported = {}
+            self._imported[attr] = description
+
+    def check_config_all(self):
+        keys = []
+        try:
+            keys = self._imported
+        except AttributeError:
+            sys.stderr.write("no keys imported.\n")
+            return
+
+        sys.stderr.write("configuration for use:\n")
+        for key in keys:
+            desc = self._imported[key]
+            sys.stderr.write("%s: %s\n" % (key, desc))
+
+        sys.stderr.write("\n")
+        
 #### env/parameter access functions
     def param(self, key):
         """return CGI parameter.
